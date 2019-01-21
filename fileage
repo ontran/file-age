@@ -1,0 +1,55 @@
+#!/bin/bash
+
+if [ ! -f $1 ]; then
+  echo "File $1 does not exist"
+  exit 0
+fi
+
+ftime=`stat -c %Y $1`
+ctime=`date +%s`
+
+diff=$(($ctime - $ftime))
+diff2=$(($diff/60))
+if [ $diff2 -eq 0 ]; then
+   echo "$diff second(s)"
+   exit 0
+fi
+
+diff=$diff2
+diff2=$(($diff/60))
+if [ $diff2 -eq 0 ]; then
+   echo "$diff minute(s)"
+   exit 0
+fi
+
+diff=$diff2
+diff2=$(($diff/60))
+if [ $diff2 -eq 0 ]; then
+   echo "$diff hour(s)"
+   exit 0
+fi
+
+diff=$diff2
+diff2=$(($diff/24))
+if [ $diff2 -eq 0 ]; then
+   echo "$diff day(s)"
+   exit 0
+fi
+
+diff=$diff2
+diff2=$(($diff/30))
+if [ $diff2 -eq 0 ]; then
+   echo "$diff month(s)"
+   exit 0
+fi
+
+diff=$diff2
+diff2=$(($diff/12))
+if [ $diff2 -eq 0 ]; then
+   echo "$diff year(s)"
+   exit 0
+fi
+
+
+
+
